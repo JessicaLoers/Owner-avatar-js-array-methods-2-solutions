@@ -56,9 +56,14 @@ const everyAnimalHasMoreThanTwoLetters = animalStrings.every((animal) => animal.
 // Option 2: Use `map()` to create an array with the length values of all strings,
 // 				then sum them up with `reduce()` (keyword: method chaining)
 
-const sumOfAllAnimalCharacters = animalStrings
-  .map((animal) => animal.length)
-  .reduce((sum, item) => sum + item, 0);
+const sumOfAllAnimalCharacters = animalStrings.reduce(
+  (concatenatedString, currentAnimal) => concatenatedString + currentAnimal,
+  ''
+).length;
+
+// const sumOfAllAnimalCharacters = animalStrings
+//   .map((animal) => animal.length)
+//   .reduce((sum, item) => sum + item, 0);
 
 export {
   hippoExists,
