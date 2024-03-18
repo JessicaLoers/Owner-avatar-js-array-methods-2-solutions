@@ -83,20 +83,32 @@ const employeesSortedByAge = employees.toSorted((a, b) => a.age - b.age);
 // QUESTION 11: We want a new employees array sorted by last name descending (Z -> A)
 // Hint use toSorted()
 
-const employeesSortedByLastName = employees.toSorted((a, b) =>
+// toSorted() MDN  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
+
+// Option 1
+const employeesSortedByLastName = employees.toSorted((a, b) => {
+  // Both last names are converted to lower case to ensure the comparison is case-insensitive.
+
+  // If 'a.lastName' comes before 'b.lastName' lexicographically, return 1 to indicate 'a' should be sorted after 'b'.
+  if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) return 1;
+
+  // If 'a.lastName' comes after 'b.lastName' lexicographically, return -1 to indicate 'a' should be sorted before 'b'.
+  if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) return -1;
+
+  // If both last names are equal (after converting to lower case), return 0 to indicate no change in order between 'a' and 'b'.
+  return 0;
+});
+
+// Option 2
+// localeCompare() MDN:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+
+// The 'localeCompare' method is used here for string comparison, which compares 'b.lastName' with 'a.lastName' according to the locale and sorting rules.
+// This results in the array being sorted in descending order by the 'lastName' field.
+// The reason 'b.lastName' is the first argument is specifically to achieve the descending order sort, as 'localeCompare' returns a negative value if the first string is sorted before the second string in the locale's order.
+
+const employeesSortedByLastName1 = employees.toSorted((a, b) =>
   b.lastName.localeCompare(a.lastName)
 );
-
-// with a little bug, needs to be fixed
-// const employeesSortedByLastName = employees.slice().sort((a, b) => {
-//   if (a.lastName > b.lastName) return 1;
-//   if (a.lastName < b.lastName) return -1;
-//   return 0;
-// });
-
-// const employeesSortedByLastName3 = employees
-//   .slice()
-//   .sort((a, b) => b.lastName.localeCompare(a.lastName));
 
 // Great! 🎉 You got it! 🚀 Now you can read the solution of the letter puzzle. 💪
 
