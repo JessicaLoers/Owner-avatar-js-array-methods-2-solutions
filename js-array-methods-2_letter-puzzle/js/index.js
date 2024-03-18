@@ -106,9 +106,9 @@ const employeesSortedByLastName = employees.toSorted((a, b) => {
 // This results in the array being sorted in descending order by the 'lastName' field.
 // The reason 'b.lastName' is the first argument is specifically to achieve the descending order sort, as 'localeCompare' returns a negative value if the first string is sorted before the second string in the locale's order.
 
-const employeesSortedByLastName1 = employees.toSorted((a, b) =>
-  b.lastName.localeCompare(a.lastName)
-);
+// const employeesSortedByLastName1 = employees.toSorted((a, b) =>
+//   b.lastName.localeCompare(a.lastName)
+// );
 
 // Great! 🎉 You got it! 🚀 Now you can read the solution of the letter puzzle. 💪
 
